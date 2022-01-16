@@ -2,7 +2,9 @@
 name = "concurrent-biproxy"
 version = "0.1.0"
 edition = "2021"
-
+repository = "https://github.com/sezi-yuan/concurrent-biproxy.git"
+description = "a proxy that concurrent transfer message from one client to an other client"
+license = "MIT/Apache-2.0"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
