@@ -4,7 +4,7 @@ use bytes::Buf;
 use serde::Deserialize;
 use serde::de::{
     self, DeserializeSeed, EnumAccess, MapAccess, SeqAccess,
-    VariantAccess, Visitor,
+    VariantAccess, Visitor, DeserializeOwned,
 };
 
 use crate::error::{Error, Result};
@@ -31,7 +31,6 @@ where
 {
     let mut deserializer = Deserializer::from_bytes(input);
     let t = T::deserialize(&mut deserializer)?;
-    println!("iner => {:?}", deserializer.input.remaining());
     if deserializer.input.has_remaining() {
         Err(Error::TrailingBytes)
     } else {
@@ -39,9 +38,9 @@ where
     }
 }
 
-pub fn from_bytes_le<'a, T>(input: &'a [u8]) -> Result<T>
+pub fn from_bytes_le<T>(input: &[u8]) -> Result<T>
 where
-    T: Deserialize<'a>,
+    T: DeserializeOwned,
 {
     let mut deserializer = Deserializer::from_bytes_le(input);
     let t = T::deserialize(&mut deserializer)?;
@@ -124,7 +123,6 @@ impl<'de> Deserializer<'de> {
 
     fn parse_string(&mut self) -> Result<String> {
         let bytes = self.parse_bytes()?;
-        println!("=====> {:?}", bytes);
         String::from_utf8(bytes)
             .map_err(|_| Error::Format)
     }
@@ -294,6 +292,7 @@ impl<'de, 'a> de::Deserializer<'de> for &'a mut Deserializer<'de> {
     where
         V: Visitor<'de>,
     {
+        println!("deserialize newtype_struct => {}", _name);
         visitor.visit_newtype_struct(self)
     }
 

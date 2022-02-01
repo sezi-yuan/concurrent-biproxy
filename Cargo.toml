@@ -7,14 +7,10 @@ description = "a proxy that concurrent transfer message from one client to an ot
 license = "MIT/Apache-2.0"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[dependencies]
-serde = { version = "1", features = ["derive"] }
-serde_json = "1"
-thiserror = "1"
-lazy_static = "1"
-tokio = { version = "1", features = ["full"] }
-futures = "0.3.19"
-bytes = "1"
-async-trait = "0"
-logs = "0"
-rand = "0"
+
+[workspace]
+members = [
+    "connect",
+    "serde",
+    "im"
+]

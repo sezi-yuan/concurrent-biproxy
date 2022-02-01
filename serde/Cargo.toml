@@ -1,0 +1,11 @@
+[package]
+name = "acceptor_serde"
+version = "0.1.0"
+edition = "2021"
+repository = "https://github.com/sezi-yuan/concurrent-biproxy.git"
+description = "acceptor serde lib"
+license = "MIT/Apache-2.0"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+bytes = "1"

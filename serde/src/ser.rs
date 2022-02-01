@@ -8,7 +8,7 @@ pub struct Serializer {
     output: BytesMut
 }
 
-pub fn to_vec_le<T>(value: &T) -> Result<Vec<u8>> 
+pub fn to_bytes_le<T>(value: &T) -> Result<Vec<u8>> 
 where
     T: Serialize
 {
@@ -20,7 +20,7 @@ where
     Ok(serializer.output.to_vec())
 }
 
-pub fn to_vec<T>(value: &T) -> Result<Vec<u8>>
+pub fn to_bytes<T>(value: &T) -> Result<Vec<u8>>
 where
     T: Serialize,
 {
