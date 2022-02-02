@@ -131,11 +131,11 @@ impl<'de> Deserializer<'de> {
 impl<'de, 'a> de::Deserializer<'de> for &'a mut Deserializer<'de> {
     type Error = Error;
 
-    fn deserialize_any<V>(self, _visitor: V) -> Result<V::Value>
+    fn deserialize_any<V>(self, visitor: V) -> Result<V::Value>
     where
         V: Visitor<'de>,
     {
-        unimplemented!()
+        visitor.visit_unit()
     }
 
     fn deserialize_bool<V>(self, visitor: V) -> Result<V::Value>
@@ -292,7 +292,6 @@ impl<'de, 'a> de::Deserializer<'de> for &'a mut Deserializer<'de> {
     where
         V: Visitor<'de>,
     {
-        println!("deserialize newtype_struct => {}", _name);
         visitor.visit_newtype_struct(self)
     }
 

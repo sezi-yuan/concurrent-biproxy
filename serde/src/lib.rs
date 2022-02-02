@@ -6,6 +6,8 @@ pub use de::{from_bytes, from_bytes_le, Deserializer};
 pub use error::{Error, Result};
 pub use ser::{to_bytes, to_bytes_le, Serializer};
 
+
+
 #[cfg(test)]
 mod test {
     use std::collections::HashMap;
@@ -58,7 +60,7 @@ mod test {
                 code: 32,
                 message: "ok".into()
             },
-            tag: Tag::C("heihei".into())
+            tag: Tag::A
         };
 
         let bytes = ser::to_bytes(&data).unwrap();
